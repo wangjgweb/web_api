@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<style>
+	body {
+		width:  600px;
+		position: relative;
+	}
+	.left {
+		width: 80px;
+		height: 150px;
+		float: left;
+		background: blue;
+	}
+	.right {
+		height: 200px;
+		background: red;
+		/* 添加 overflow: hidden 使.right行程bfc*/
+		overflow: hidden;  
+	}
+</style>
+<body>
+	<div class="left"></div>
+	<div class="right"></div>
+</body>
+</html>
