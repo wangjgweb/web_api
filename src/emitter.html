@@ -1,0 +1,50 @@
+<!--
+ * @Date: 2021-02-18 19:17:04
+ * @FilePath: /web_api/src/emitter.html
+ * @Autor: wangjiguang
+ * @LastEditors: Do not edit
+ * @LastEditTime: 2021-02-18 22:45:48
+ * @Description: 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>发布订阅模式</title>
+</head>
+<body>
+  <script>
+    class EventEmitter {
+      constructor () {
+        this.cbs = {}
+      }
+
+      on (event, fn) {
+        this.cbs[event] = this.cbs[event] || []
+        this.cbs[event].push(fn)
+      }
+
+      emitter (event) {
+        if (this.cbs[event]) {
+          const args = [].slice.call(arguments)
+          args.shift()
+          this.cbs[event].forEach(fn => {
+            fn(args)
+          })
+        }
+      }
+    }
+
+    let em = new EventEmitter()
+    em.on('click', (args) => {
+      console.log('click1' + args)
+    })
+    em.on('click', (args) => {
+      console.log('click2' + args)
+    })
+
+    em.emitter('click', 'uuuuuuuu')
+  </script>
+</body>
+</html>
