@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>插入排序</title>
+</head>
+<body>
+	<script>
+		let arry = [4, 3, 5, 8, 6, 7, 1, 2]
+		function insert (arry) {
+			let n = arry.length
+			if (n<=1) {
+				return arry
+			}
+			for (let i=1; i<n; i++) {
+				let val = arry[i]
+				let j=i-1
+				for (; j>=0; j--) {
+					if (arry[j] > val) {
+						arry[j+1] = arry[j]
+					} else {
+						break
+					}
+				}
+				arry[j+1] = val
+			}
+		}
+		insert(arry)
+		console.log(arry)
+	</script>
+</body>
+</html>

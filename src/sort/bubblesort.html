@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>冒泡排序</title>
+</head>
+<body>
+	<script>
+		let arry = [4, 3, 5, 8, 6, 7, 1, 2]
+		function bubble (arr) {
+			if (arr.length <= 1) {
+				return arr
+			}
+			let n = arr.length
+			for (let i=0; i<n; i++) {
+				for (let j=0; j<n-i-1; j++) {
+					if (arr[j] > arr[j+1]) {
+						let temp = arr[j]
+						arr[j] = arr[j+1]
+						arr[j+1] = temp
+					}
+				}
+			}
+		}
+		bubble(arry)
+		console.log(arry)
+	</script>
+</body>
+</html>
