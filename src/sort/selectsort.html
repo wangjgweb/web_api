@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>选择排序</title>
+</head>
+<body>
+	<script>
+		let sortArry = [4, 3, 5, 8, 6, 7, 1, 2]
+		function selectSort (arry) {
+			let length = arry.length
+			if (length <= 1) {
+				return arry
+			}
+			for (let i=0; i<length-1; i++) {
+				let minIndex = i;
+				for (let j=i+1; j<length; j++) {
+					if (arry[j] < arry[minIndex]) {
+						minIndex = j
+					}
+				}
+				let temp = arry[i]
+				arry[i] = arry[minIndex]
+				arry[minIndex] = temp
+			}
+			return arry
+		}
+		console.log(selectSort(sortArry))
+	</script>
+</body>
+</html>
