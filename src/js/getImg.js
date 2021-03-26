@@ -34,16 +34,15 @@
     //   return prePromise.then(()=>loadImg(url))
     // }, Promise.resolve())
   }
-  // getImgByReduce()
+  // getImgByReduce()s
+  
 
   const getImgByLimit = (urlLists, limit) => {
     let copyLists = [...urlLists];   
-    let promiseArry = copyLists.splice(0, limit).map(loadImg)
-
     if (copyLists.length <= limit) {
-      return Promise.all(promiseArry)
+      return Promise.all(urlLists.map(getImg))
     }
-
+    let promiseArry = copyLists.splice(0, limit).map(loadImg)
     return copyLists.reduce((prePromise, url) => {
       return prePromise.then(()=>Promise.race(promiseArry))
         .catch(error => {console.log(error)})

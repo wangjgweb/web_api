@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>缓存函数</title>
+</head>
+<body>
+	<script>
+		const memorizeSum = function (a, b) {
+			const key = Array.prototype.slice.apply(arguments).join()
+			arguments.callee.cache = arguments.callee.cache || {}
+			if (!arguments.callee.cache[key]) {
+				arguments.callee.cache[key] = a + b
+			}
+			return arguments.callee.cache[key]
+		}
+		console.log(memorizeSum(1,2))
+		console.log(memorizeSum(1,2))
+
+
+		const sum = function (a, b) {
+			return a + b
+		}
+
+		const memorize = function (fn, content) {
+			content = content || this
+			const cache = Object.create(null)
+			return (...args) => {
+				const key = args
+				if (!cache[key]) {
+					cache[key] = fn.apply(content, args)
+				}
+				return cache[key]
+			}
+		}
+		const sumFn = memorize(sum)
+
+		console.log(sumFn(2,3))
+		console.log(sumFn(2,3))
+
+
+	</script>
+</body>
+</html>

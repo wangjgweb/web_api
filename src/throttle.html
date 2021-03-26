@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>节流</title>
+</head>
+<body>
+	<div id="ele">按钮</div>
+	<div style="width: 200px; height: 2000px; background-color: red;">滚动屏幕</div>
+	<script>
+		// 首次执行，首节流
+		function throttle (fn, delay) {
+			let last = +new Date()
+			return function () {
+				let now = +new Date()
+				if (now - last < delay) {
+					return;
+				}
+				fn.apply(this, arguments)
+				last = now
+			}
+		}
+		const showTop = function () {
+			let scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+			console.log('滚动高度：'+scrollTop)
+		}
+		window.onscroll = throttle(showTop, 1000)
+
+		// 首次不执行, 尾节流
+		function throttle2 (fn, delay) {
+			let flag = true
+			return function () {
+				if (!flag) {
+					return 
+				}
+				flag = false
+				setTimeout(()=> {
+					fn.apply(this, arguments)
+					flag = true
+				}, delay)
+			}
+		}
+
+		const clickFn = function (ev) {
+			console.log(ev)
+		}
+		document.getElementById('ele').addEventListener('click', throttle2(clickFn, 1000))
+
+	</script>
+</body>
+</html>

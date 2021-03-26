@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>防抖</title>
+</head>
+<body>
+	<div id="ele">连续点击按钮</div>
+	<div style="width: 100px; height: 2000px; background-color: red;"></div>
+	<script>
+		function debounce (fn, delay) {
+			let timer = null
+			return function () {
+				if (timer) {
+					clearTimeout(timer)
+				}
+				timer = setTimeout(() => {
+					fn.apply(this, arguments)
+				}, delay)
+			}
+		}
+		let ele = document.getElementById('ele')
+		const clickFn = function (ev) {
+			console.log('----', ev)
+		}
+		ele.addEventListener('click', debounce(clickFn, 500))
+
+		function showTop (ev) {
+			let scrollTop = document.body.scrollTop || document.documentElement.scrollTop
+			console.log('滚动位置:', scrollTop)
+		}
+
+		window.onscroll = debounce(showTop, 1000)
+
+	</script>
+</body>
+</html>
