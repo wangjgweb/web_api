@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>快速排序</title>
+</head>
+<body>
+	<script>
+		let arry = [4, 3, 5, 8, 6, 7, 1, 2]
+		function quickSort (arr) {
+			function sort (arr) {
+				if (arr.length <=1) return arr
+				let length = arr.length
+				let index = Math.floor(length/2)
+				let middle = arr.splice(index, 1)[0]
+				let left = []
+				let right = []
+				for(let i=0; i<length; i++) {
+					if (arr[i]<middle) {
+						left.push(arr[i])
+					} else if (arr[i] >= middle) {
+						right.push(arr[i])
+					}
+				}
+				return sort(left).concat([middle], sort(right))
+			}
+			return sort(arr)
+		}
+		console.log(quickSort(arry))
+	</script>
+</body>
+</html>

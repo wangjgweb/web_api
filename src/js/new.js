@@ -15,3 +15,6 @@
 	const p = new newFunc(Person, 'hhh')
 	console.log(p.name)
 })()
+
+
+
