@@ -1,9 +1,9 @@
 /*
  * @Date: 2020-11-04 11:07:25
- * @FilePath: /web_api/src/reduce.js
+ * @FilePath: /web_api/src/js/reduce.js
  * @Autor: wangjiguang
  * @LastEditors: Do not edit
- * @LastEditTime: 2020-11-11 18:03:07
+ * @LastEditTime: 2021-06-11 15:39:52
  * @Description: 
  */
 (function () {
@@ -99,5 +99,5 @@
   let result2 = arr.reduceFn2((pre, current) => {
     return pre+current
   })
-  console.log('1--', result2)
+  console.log('1-----', result2)
 })()
